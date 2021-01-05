@@ -1,0 +1,36 @@
+c:\users\nourhan khalid\documents\visual studio 2013\Projects\TINY_COMPILER_MILSTONE1\TINY_COMPILER_MILSTONE1\bin\Debug\TINY_COMPILER_MILSTONE1.exe.config
+C:\Users\Nourhan Khalid\Documents\Visual Studio 2013\Projects\TINY_COMPILER_MILSTONE1\TINY_COMPILER_MILSTONE1\obj\Debug\TINY_COMPILER_MILSTONE1.csprojResolveAssemblyReference.cache
+C:\Users\Nourhan Khalid\Documents\Visual Studio 2013\Projects\TINY_COMPILER_MILSTONE1\TINY_COMPILER_MILSTONE1\obj\Debug\TINY_COMPILER_MILSTONE1.Form1.resources
+C:\Users\Nourhan Khalid\Documents\Visual Studio 2013\Projects\TINY_COMPILER_MILSTONE1\TINY_COMPILER_MILSTONE1\obj\Debug\TINY_COMPILER_MILSTONE1.Properties.Resources.resources
+C:\Users\Nourhan Khalid\Documents\Visual Studio 2013\Projects\TINY_COMPILER_MILSTONE1\TINY_COMPILER_MILSTONE1\obj\Debug\TINY_COMPILER_MILSTONE1.csproj.GenerateResource.Cache
+C:\Users\Nourhan Khalid\Documents\Visual Studio 2013\Projects\TINY_COMPILER_MILSTONE1\TINY_COMPILER_MILSTONE1\bin\Debug\TINY_COMPILER_MILSTONE1.exe
+C:\Users\Nourhan Khalid\Documents\Visual Studio 2013\Projects\TINY_COMPILER_MILSTONE1\TINY_COMPILER_MILSTONE1\bin\Debug\TINY_COMPILER_MILSTONE1.pdb
+C:\Users\Nourhan Khalid\Documents\Visual Studio 2013\Projects\TINY_COMPILER_MILSTONE1\TINY_COMPILER_MILSTONE1\obj\Debug\TINY_COMPILER_MILSTONE1.exe
+C:\Users\Nourhan Khalid\Documents\Visual Studio 2013\Projects\TINY_COMPILER_MILSTONE1\TINY_COMPILER_MILSTONE1\obj\Debug\TINY_COMPILER_MILSTONE1.pdb
+F:\lectcures and labs fourth year\1st term\compiler\milestones\TINY_COMPILER_MILSTONE1\TINY_COMPILER_MILSTONE1\bin\Debug\TINY_COMPILER_MILSTONE1.exe.config
+F:\lectcures and labs fourth year\1st term\compiler\milestones\TINY_COMPILER_MILSTONE1\TINY_COMPILER_MILSTONE1\bin\Debug\TINY_COMPILER_MILSTONE1.exe
+F:\lectcures and labs fourth year\1st term\compiler\milestones\TINY_COMPILER_MILSTONE1\TINY_COMPILER_MILSTONE1\bin\Debug\TINY_COMPILER_MILSTONE1.pdb
+F:\lectcures and labs fourth year\1st term\compiler\milestones\TINY_COMPILER_MILSTONE1\TINY_COMPILER_MILSTONE1\obj\Debug\TINY_COMPILER_MILSTONE1.csprojResolveAssemblyReference.cache
+F:\lectcures and labs fourth year\1st term\compiler\milestones\TINY_COMPILER_MILSTONE1\TINY_COMPILER_MILSTONE1\obj\Debug\TINY_COMPILER_MILSTONE1.Form1.resources
+F:\lectcures and labs fourth year\1st term\compiler\milestones\TINY_COMPILER_MILSTONE1\TINY_COMPILER_MILSTONE1\obj\Debug\TINY_COMPILER_MILSTONE1.Properties.Resources.resources
+F:\lectcures and labs fourth year\1st term\compiler\milestones\TINY_COMPILER_MILSTONE1\TINY_COMPILER_MILSTONE1\obj\Debug\TINY_COMPILER_MILSTONE1.csproj.GenerateResource.Cache
+F:\lectcures and labs fourth year\1st term\compiler\milestones\TINY_COMPILER_MILSTONE1\TINY_COMPILER_MILSTONE1\obj\Debug\TINY_COMPILER_MILSTONE1.exe
+F:\lectcures and labs fourth year\1st term\compiler\milestones\TINY_COMPILER_MILSTONE1\TINY_COMPILER_MILSTONE1\obj\Debug\TINY_COMPILER_MILSTONE1.pdb
+F:\lectcures and labs fourth year\1st term\compiler\milestones\Milestone 1\TINY_COMPILER_MILSTONE1\TINY_COMPILER_MILSTONE1\bin\Debug\TINY_COMPILER_MILSTONE1.exe.config
+F:\lectcures and labs fourth year\1st term\compiler\milestones\Milestone 1\TINY_COMPILER_MILSTONE1\TINY_COMPILER_MILSTONE1\obj\Debug\TINY_COMPILER_MILSTONE1.exe
+F:\lectcures and labs fourth year\1st term\compiler\milestones\Milestone 1\TINY_COMPILER_MILSTONE1\TINY_COMPILER_MILSTONE1\obj\Debug\TINY_COMPILER_MILSTONE1.pdb
+F:\lectcures and labs fourth year\1st term\compiler\milestones\Milestone 1\TINY_COMPILER_MILSTONE1\TINY_COMPILER_MILSTONE1\bin\Debug\TINY_COMPILER_MILSTONE1.exe
+F:\lectcures and labs fourth year\1st term\compiler\milestones\Milestone 1\TINY_COMPILER_MILSTONE1\TINY_COMPILER_MILSTONE1\bin\Debug\TINY_COMPILER_MILSTONE1.pdb
+F:\lectcures and labs fourth year\1st term\compiler\milestones\Milestone 1\TINY_COMPILER_MILSTONE1\TINY_COMPILER_MILSTONE1\obj\Debug\TINY_COMPILER_MILSTONE1.csprojResolveAssemblyReference.cache
+F:\lectcures and labs fourth year\1st term\compiler\milestones\Milestone 1\TINY_COMPILER_MILSTONE1\TINY_COMPILER_MILSTONE1\obj\Debug\TINY_COMPILER_MILSTONE1.Form1.resources
+F:\lectcures and labs fourth year\1st term\compiler\milestones\Milestone 1\TINY_COMPILER_MILSTONE1\TINY_COMPILER_MILSTONE1\obj\Debug\TINY_COMPILER_MILSTONE1.Properties.Resources.resources
+F:\lectcures and labs fourth year\1st term\compiler\milestones\Milestone 1\TINY_COMPILER_MILSTONE1\TINY_COMPILER_MILSTONE1\obj\Debug\TINY_COMPILER_MILSTONE1.csproj.GenerateResource.Cache
+D:\4rd year\compiler\TINY_COMPILER_MILSTONE1_final\TINY_COMPILER_MILSTONE1\bin\Debug\TINY_COMPILER_MILSTONE1.exe.config
+D:\4rd year\compiler\TINY_COMPILER_MILSTONE1_final\TINY_COMPILER_MILSTONE1\obj\Debug\TINY_COMPILER_MILSTONE1.exe
+D:\4rd year\compiler\TINY_COMPILER_MILSTONE1_final\TINY_COMPILER_MILSTONE1\obj\Debug\TINY_COMPILER_MILSTONE1.pdb
+D:\4rd year\compiler\TINY_COMPILER_MILSTONE1_final\TINY_COMPILER_MILSTONE1\bin\Debug\TINY_COMPILER_MILSTONE1.exe
+D:\4rd year\compiler\TINY_COMPILER_MILSTONE1_final\TINY_COMPILER_MILSTONE1\bin\Debug\TINY_COMPILER_MILSTONE1.pdb
+D:\4rd year\compiler\TINY_COMPILER_MILSTONE1_final\TINY_COMPILER_MILSTONE1\obj\Debug\TINY_COMPILER_MILSTONE1.csprojResolveAssemblyReference.cache
+D:\4rd year\compiler\TINY_COMPILER_MILSTONE1_final\TINY_COMPILER_MILSTONE1\obj\Debug\TINY_COMPILER_MILSTONE1.Form1.resources
+D:\4rd year\compiler\TINY_COMPILER_MILSTONE1_final\TINY_COMPILER_MILSTONE1\obj\Debug\TINY_COMPILER_MILSTONE1.Properties.Resources.resources
+D:\4rd year\compiler\TINY_COMPILER_MILSTONE1_final\TINY_COMPILER_MILSTONE1\obj\Debug\TINY_COMPILER_MILSTONE1.csproj.GenerateResource.Cache
