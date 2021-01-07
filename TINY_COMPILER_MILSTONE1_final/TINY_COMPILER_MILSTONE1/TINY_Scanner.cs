@@ -1,4 +1,5 @@
-﻿using System;
+﻿using JASONParser;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -26,8 +27,6 @@ namespace TINY_COMPILER_MILSTONE1
     {
         public string lex;
         public TINY_Token_Class token_type;
-
-
     }
 
     public class TINY_Scanner
@@ -314,7 +313,7 @@ namespace TINY_COMPILER_MILSTONE1
         }
         int size = 0;
         //test every tokens to get the match one
-        public void Find_Match_Token(string Lex)
+        public  void Find_Match_Token(string Lex)
         {
             TINY_Token_Class TC;
 
@@ -366,7 +365,8 @@ namespace TINY_COMPILER_MILSTONE1
 
                             }
 
-
+                SyntaxAnalyser SA = new SyntaxAnalyser();
+                SA.Parse(Tokens); 
                     }
 
                  else if (isIdentifier(Lex))
