@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using TINY_COMPILER_MILSTONE1;
 
 namespace JASONParser
 {
@@ -20,9 +21,9 @@ namespace JASONParser
     {
 
         int InputPointer = 0;
-        static List<Token> TokenStream;
+        static List<TINY_Token> TokenStream;
         public static Node root;
-        public static Node Parse(List<Token> Tokens)
+        public static Node Parse(List<TINY_Token> Tokens)
         {
             TokenStream = Tokens;
 
@@ -31,7 +32,7 @@ namespace JASONParser
             return root;
         }
 
-        public Node match(Token_Class ExpectedToken)
+        public Node match(TINY_Token_Class ExpectedToken)
         {
 
 

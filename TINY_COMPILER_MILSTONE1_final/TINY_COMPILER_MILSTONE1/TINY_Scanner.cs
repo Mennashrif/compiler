@@ -4,7 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-public enum TINY_Token_Class
+namespace TINY_COMPILER_MILSTONE1
+{
+
+    public enum TINY_Token_Class
 {
   
     Dot, Semicolon, Comma, LParanthesis, RParanthesis, AssignmentlOp, LessThanOp, AndOp, OROp, ISEqualOp,
@@ -16,8 +19,7 @@ public enum TINY_Token_Class
     Identifier, Constant, Comment, Number, Stringstat
 
 }
-namespace TINY_COMPILER_MILSTONE1
-{
+
 
 
     public class TINY_Token
