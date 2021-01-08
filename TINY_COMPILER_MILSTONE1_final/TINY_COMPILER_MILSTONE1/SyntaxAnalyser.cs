@@ -90,6 +90,38 @@ namespace JASONParser
             }
             return null;
         }
+        public Node ReadStatement()
+        {
+            Node node = new Node("ReadStatement");
+            Node read = match(TINY_Token_Class.read);
+            Node identifier = Identifier();
+            Node semicolon = match(TINY_Token_Class.Semicolon);
+            if (read != null && identifier != null && semicolon != null)
+            {
+                node.children.Add(read);
+                node.children.Add(identifier);
+                node.children.Add(semicolon);
+                return node;
+            }
+            return null;
+        }
+        public Node WriteStatement()
+        {
+            Node node = new Node("WriteStatement");
+            Node write = match(TINY_Token_Class.write);
+            Node expression = Expression();
+            Node endl = match(TINY_Token_Class.endl);
+            Node semicolon = match(TINY_Token_Class.Semicolon);
+            if (write != null && expression != null && endl != null && semicolon != null)
+            {
+                node.children.Add(write);
+                node.children.Add(expression);
+                node.children.Add(endl);
+                node.children.Add(semicolon);
+                return node;
+            }
+            return null;
+        }
         public Node Expression()
         {
             return null;
