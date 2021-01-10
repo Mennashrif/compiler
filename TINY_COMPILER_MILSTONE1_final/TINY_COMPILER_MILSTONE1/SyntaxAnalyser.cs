@@ -151,17 +151,96 @@ namespace JASONParser
 
             return null;
         }
+        public Node DataType()
+        {
+            return null;
+        }
+
+        // tasneem  
+        public Node FunctionName()
+        {
+            Node node = new Node("Function Name");
+            Node identifier = Identifier();
+
+            if (identifier != null)
+            {
+                node.children.Add(identifier);
+                return node;
+            }
+            return null;
+        }
+
+        // EX : int x 
+        public Node Parameter()
+        {
+            Node node = new Node(" Parameter ");
+            Node dataType = DataType();
+           
+            if (dataType != null)
+            {
+                Node identifier = Identifier();
+                if (identifier != null)
+                {
+                    node.children.Add(dataType);
+                    node.children.Add(identifier);
+                    return node;
+                }
+               
+            }
+            return null;
+        }
+        //EX : int sum(int a, int b) 
+        public Node FunctionDeclaration()
+        {
+            Node node = new Node(" Function_Declaration ");
+            Node dataType = DataType();
+            if (dataType != null)
+            {
+                Node FunName = FunctionName();
+                if (FunName !=null)
+                {
+                    Node leftbracket = match(TINY_Token_Class.LParanthesis);
+                    if (leftbracket != null)
+                    {
+                        Node attrib = FunctionAttribute();
+                        if (attrib != null)
+                        {
+                            Node rightbracket = match(TINY_Token_Class.RParanthesis);
+                            if (rightbracket!=null)
+                            {
+                                node.children.Add(dataType);
+                                node.children.Add(FunName);
+                                node.children.Add(leftbracket);
+                                node.children.Add(attrib);
+                                node.children.Add(rightbracket);
+                                return node;
+
+                            }
+                        }
+
+                    }
+                }
+            }
+                return null;
+        }
+        // EX : int a, int b
+        public Node FunctionAttribute()
+        {
+
+            return null;
+        }
 
 
         //use this function to print the parse tree in TreeView Toolbox
         public static TreeNode PrintParseTree(Node root)
         {
-            TreeNode tree = new TreeNode("Parse Tree");
-            TreeNode treeRoot = PrintTree(root);
-            if (treeRoot != null)
-                tree.Nodes.Add(treeRoot);
-            return tree;
+        TreeNode tree = new TreeNode("Parse Tree");
+        TreeNode treeRoot = PrintTree(root);
+        if (treeRoot != null)
+            tree.Nodes.Add(treeRoot);
+        return tree;
         }
+
         static TreeNode PrintTree(Node root)
         {
             if (root == null || root.Name == null)
@@ -177,5 +256,6 @@ namespace JASONParser
             }
             return tree;
         }
+
     }
 }
