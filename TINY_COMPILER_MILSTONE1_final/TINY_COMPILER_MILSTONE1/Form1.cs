@@ -1,4 +1,5 @@
-﻿using System;
+﻿using JASONParser;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -34,7 +35,10 @@ namespace TINY_COMPILER_MILSTONE1
             TINY_Compiler.Start_Compiling(Code);
             PrintTokens();
             PrintErrors();
-            
+            Form2 f = new Form2();
+            f.Show();
+
+
         }
         void PrintTokens()
         {

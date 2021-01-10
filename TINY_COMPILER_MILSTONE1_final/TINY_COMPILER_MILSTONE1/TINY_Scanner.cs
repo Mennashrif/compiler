@@ -365,8 +365,7 @@ namespace TINY_COMPILER_MILSTONE1
 
                             }
 
-                SyntaxAnalyser SA = new SyntaxAnalyser();
-                SA.Parse(Tokens); 
+                
                     }
 
                  else if (isIdentifier(Lex))
@@ -423,9 +422,9 @@ namespace TINY_COMPILER_MILSTONE1
                     Tok.lex = Lex;
                     Errors.Error_List.Add(Tok.lex);
                 }
-           
-                
 
+
+            
         }
         // check if operator
         bool isoperator(string lex)
