@@ -27,7 +27,7 @@ namespace JASONParser
         public  Node Parse(List<TINY_Token> Tokens)
         {
             TokenStream = Tokens;
-                 root = Datatype();
+                 root = DeclarationStatement();
            
             return root;
         }
@@ -228,14 +228,93 @@ namespace JASONParser
             return null;
         }
 
-        private Node Equation()
+        public Node Equation()
         {
-
-            return null;
+            Node node = new Node("Equation");
+              Left(node);
+              Mid(node);
+            if (node == null)
+                return null;
+            Right(node);
+            return node;
+        }
+        public void Left(Node node)
+        {
+            if (ISmatch(TINY_Token_Class.LParanthesis, tokenIndex) || (Term() != null && tokenIndex == TokenStream.Count - 1))
+            {
+                return;
+            }
+            else
+            {
+                node.children.Add(Term());
+                node.children.Add(Arithmatic_Operation());
+            }
+            
+        }
+        public void Mid(Node node)
+        {
+            return;
+        }
+        public void Right(Node node)
+        {
+            return;
         }
 
-        public Node DeclarationStatement()
+        public Node DeclarationStatement()      //semicolon error
         {
+            
+            Node node = new Node("DeclarationStatement");
+            Node DataType = Datatype();
+
+            if (DataType != null)
+            {
+                node.children.Add(DataType);
+                while (true)
+                {
+                    while (true)
+                    {
+                        if (ISmatch(TINY_Token_Class.Identifier, tokenIndex) && ISmatch(TINY_Token_Class.Comma, tokenIndex + 1))
+                        {
+                            node.children.Add(match(TINY_Token_Class.Identifier));
+                            node.children.Add(match(TINY_Token_Class.Comma));
+                        }
+                        else if (ISmatch(TINY_Token_Class.Identifier, tokenIndex) && ISmatch(TINY_Token_Class.Semicolon, tokenIndex + 1))
+                        {
+                            node.children.Add(match(TINY_Token_Class.Identifier));
+                            node.children.Add(match(TINY_Token_Class.Semicolon));
+                            return node;
+                        }
+                        else if (ISmatch(TINY_Token_Class.Identifier, tokenIndex)&& !ISmatch(TINY_Token_Class.ISEqualOp, tokenIndex+1))
+                        {
+                            node.children.Add(match(TINY_Token_Class.Identifier));
+                            // error semicolon
+                            return node;
+                        }
+
+                        else
+                            break;
+                    }
+                    Node Assignmentstate = Assignment_Statement();
+                    if (Assignmentstate != null && ISmatch(TINY_Token_Class.Comma, tokenIndex)){
+                        node.children.Add(Assignmentstate);
+                        node.children.Add(match(TINY_Token_Class.Comma));
+                        }
+                    else if(Assignmentstate != null && ISmatch(TINY_Token_Class.Semicolon, tokenIndex))
+                    {
+                        node.children.Add(Assignmentstate);
+                        node.children.Add(match(TINY_Token_Class.Semicolon));
+                        return node;
+                    }
+                    else if(Assignmentstate != null)
+                    {
+                        node.children.Add(Assignmentstate);
+                        //error semicolon
+                        return node;
+                    }
+                    
+    
+                } 
+            }
             return null;
         }
         
