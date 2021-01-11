@@ -41,5 +41,3 @@ D:\4rd year\projects\compiler\TINY_COMPILER_MILSTONE1_final\TINY_COMPILER_MILSTO
 D:\4rd year\projects\compiler\TINY_COMPILER_MILSTONE1_final\TINY_COMPILER_MILSTONE1\bin\Debug\TINY_COMPILER_MILSTONE1.pdb
 D:\4rd year\projects\compiler\TINY_COMPILER_MILSTONE1_final\TINY_COMPILER_MILSTONE1\obj\Debug\TINY_COMPILER_MILSTONE1.Properties.Resources.resources
 D:\4rd year\projects\compiler\TINY_COMPILER_MILSTONE1_final\TINY_COMPILER_MILSTONE1\obj\Debug\TINY_COMPILER_MILSTONE1.csproj.GenerateResource.Cache
-D:\4rd year\projects\compiler\TINY_COMPILER_MILSTONE1_final\TINY_COMPILER_MILSTONE1\obj\Debug\TINY_COMPILER_MILSTONE1.csprojResolveAssemblyReference.cache
-D:\4rd year\projects\compiler\TINY_COMPILER_MILSTONE1_final\TINY_COMPILER_MILSTONE1\obj\Debug\TINY_COMPILER_MILSTONE1.Form2.resources
