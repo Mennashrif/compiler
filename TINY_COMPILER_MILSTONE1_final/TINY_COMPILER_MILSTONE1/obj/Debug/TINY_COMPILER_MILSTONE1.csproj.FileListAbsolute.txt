@@ -52,3 +52,14 @@ D:\4thYear\compiler\project2\compiler\TINY_COMPILER_MILSTONE1_final\TINY_COMPILE
 D:\4thYear\compiler\project2\compiler\TINY_COMPILER_MILSTONE1_final\TINY_COMPILER_MILSTONE1\obj\Debug\TINY_COMPILER_MILSTONE1.exe
 D:\4thYear\compiler\project2\compiler\TINY_COMPILER_MILSTONE1_final\TINY_COMPILER_MILSTONE1\obj\Debug\TINY_COMPILER_MILSTONE1.pdb
 D:\4thYear\compiler\project2\compiler\TINY_COMPILER_MILSTONE1_final\TINY_COMPILER_MILSTONE1\obj\Debug\TINY_COMPILER_MILSTONE1.Form1.resources
+E:\4thYear\Compiler\Task2\Compiler2\compiler\TINY_COMPILER_MILSTONE1_final\TINY_COMPILER_MILSTONE1\bin\Debug\TINY_COMPILER_MILSTONE1.exe.config
+E:\4thYear\Compiler\Task2\Compiler2\compiler\TINY_COMPILER_MILSTONE1_final\TINY_COMPILER_MILSTONE1\bin\Debug\TINY_COMPILER_MILSTONE1.exe
+E:\4thYear\Compiler\Task2\Compiler2\compiler\TINY_COMPILER_MILSTONE1_final\TINY_COMPILER_MILSTONE1\bin\Debug\TINY_COMPILER_MILSTONE1.pdb
+E:\4thYear\Compiler\Task2\Compiler2\compiler\TINY_COMPILER_MILSTONE1_final\TINY_COMPILER_MILSTONE1\obj\Debug\TINY_COMPILER_MILSTONE1.csprojAssemblyReference.cache
+E:\4thYear\Compiler\Task2\Compiler2\compiler\TINY_COMPILER_MILSTONE1_final\TINY_COMPILER_MILSTONE1\obj\Debug\TINY_COMPILER_MILSTONE1.Form1.resources
+E:\4thYear\Compiler\Task2\Compiler2\compiler\TINY_COMPILER_MILSTONE1_final\TINY_COMPILER_MILSTONE1\obj\Debug\TINY_COMPILER_MILSTONE1.Form2.resources
+E:\4thYear\Compiler\Task2\Compiler2\compiler\TINY_COMPILER_MILSTONE1_final\TINY_COMPILER_MILSTONE1\obj\Debug\TINY_COMPILER_MILSTONE1.Properties.Resources.resources
+E:\4thYear\Compiler\Task2\Compiler2\compiler\TINY_COMPILER_MILSTONE1_final\TINY_COMPILER_MILSTONE1\obj\Debug\TINY_COMPILER_MILSTONE1.csproj.GenerateResource.cache
+E:\4thYear\Compiler\Task2\Compiler2\compiler\TINY_COMPILER_MILSTONE1_final\TINY_COMPILER_MILSTONE1\obj\Debug\TINY_COMPILER_MILSTONE1.csproj.CoreCompileInputs.cache
+E:\4thYear\Compiler\Task2\Compiler2\compiler\TINY_COMPILER_MILSTONE1_final\TINY_COMPILER_MILSTONE1\obj\Debug\TINY_COMPILER_MILSTONE1.exe
+E:\4thYear\Compiler\Task2\Compiler2\compiler\TINY_COMPILER_MILSTONE1_final\TINY_COMPILER_MILSTONE1\obj\Debug\TINY_COMPILER_MILSTONE1.pdb

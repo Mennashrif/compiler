@@ -18,7 +18,7 @@ namespace JASONParser
         }
     }
    public class SyntaxAnalyser
-    {
+   {
 
         int tokenIndex = 0;
         static List<TINY_Token> TokenStream;
@@ -32,7 +32,90 @@ namespace JASONParser
            
             return root;
         }
+<<<<<<< HEAD
         // x>4 error X  4 >
+=======
+
+        public Node ReservedKeywords() //done 
+        {
+            Node node = new Node("ReservedKeyWords");
+            if (ISmatch(TINY_Token_Class.Int, tokenIndex))
+            {
+                node.children.Add(match(TINY_Token_Class.Int));
+                return node;
+            }
+            else if (ISmatch(TINY_Token_Class.Float, tokenIndex))
+            {
+                node.children.Add(match(TINY_Token_Class.Float));
+                return node;
+            }
+            else if (ISmatch(TINY_Token_Class.String, tokenIndex))
+            {
+                node.children.Add(match(TINY_Token_Class.String));
+                return node;
+            }
+            else if (ISmatch(TINY_Token_Class.read, tokenIndex))
+            {
+                node.children.Add(match(TINY_Token_Class.read));
+                return node;
+            }
+            else if (ISmatch(TINY_Token_Class.write, tokenIndex))
+            {
+                node.children.Add(match(TINY_Token_Class.write));
+                return node;
+            }
+            else if (ISmatch(TINY_Token_Class.repeat, tokenIndex))
+            {
+                node.children.Add(match(TINY_Token_Class.repeat));
+                return node;
+            }
+            else if (ISmatch(TINY_Token_Class.until, tokenIndex))
+            {
+                node.children.Add(match(TINY_Token_Class.until));
+                return node;
+            }
+            else if (ISmatch(TINY_Token_Class.If, tokenIndex))
+            {
+                node.children.Add(match(TINY_Token_Class.If));
+                return node;
+            }
+            else if (ISmatch(TINY_Token_Class.Elseif, tokenIndex))
+            {
+                node.children.Add(match(TINY_Token_Class.Elseif));
+                return node;
+            }
+            else if (ISmatch(TINY_Token_Class.Else, tokenIndex))
+            {
+                node.children.Add(match(TINY_Token_Class.Else));
+                return node;
+            }
+            else if (ISmatch(TINY_Token_Class.then, tokenIndex))
+            {
+                node.children.Add(match(TINY_Token_Class.then));
+                return node;
+            }
+            else if (ISmatch(TINY_Token_Class.main, tokenIndex))
+            {
+                node.children.Add(match(TINY_Token_Class.main));
+                return node;
+            }
+            else if (ISmatch(TINY_Token_Class.Return, tokenIndex))
+            {
+                node.children.Add(match(TINY_Token_Class.Return));
+                return node;
+            }
+            else if (ISmatch(TINY_Token_Class.endl, tokenIndex))
+            {
+                node.children.Add(match(TINY_Token_Class.endl));
+                return node;
+            }
+            else
+            {
+
+            }
+            return null;
+        }
+>>>>>>> da30205801888b316aba2a3b719f69b0a0ac4543
         public Node Condition()
         {
             Node node = new Node("Condition");
@@ -49,7 +132,6 @@ namespace JASONParser
                 Errors.Add(" expected boolean in condition !");
             return node;    
         }
-     
         public Node Term()
         {
             Node node = new Node("Term");
