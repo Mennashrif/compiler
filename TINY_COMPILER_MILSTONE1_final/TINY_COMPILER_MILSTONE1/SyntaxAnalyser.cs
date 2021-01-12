@@ -22,80 +22,67 @@ namespace JASONParser
 
         int tokenIndex = 0;
         static List<TINY_Token> TokenStream;
-        public List<string> Errors;
+        public List<string> Errors = new List<string>();
         public static Node root;
 
         public  Node Parse(List<TINY_Token> Tokens)
         {
             TokenStream = Tokens;
-                 root = Program();
+                 root = if_statement();
            
             return root;
         }
+        // x>4 error X  4 >
         public Node Condition()
         {
             Node node = new Node("Condition");
             Node identifier = match(TINY_Token_Class.Identifier);
             Node condition_operator = Condition_operator();
             Node term = Term();
-            if (identifier != null && condition_operator != null && term != null)
+            if (identifier != null && condition_operator.children.Count()!= 0&& term.children.Count()!=0)
             {
                 node.children.Add(identifier);
                 node.children.Add(condition_operator);
                 node.children.Add(term);
-                return node;
             }
-             return null;
+            else
+                Errors.Add(" expected boolean in condition !");
+            return node;    
         }
      
         public Node Term()
         {
             Node node = new Node("Term");
             Node function_call = Function_Call();
+            
             if (ISmatch(TINY_Token_Class.Number,tokenIndex))
-            {
                 node.children.Add(match(TINY_Token_Class.Number));
-                return node;
-            }
+            
             else if (function_call != null)
-            {
                 node.children.Add(function_call);
-                return node;
-            }
+
             else if(ISmatch(TINY_Token_Class.Identifier,tokenIndex))
-            {
                 node.children.Add(match(TINY_Token_Class.Identifier));
-                return node;
-            }
-           
-          
-            return null;
+
+            return node;
         }
         public Node Condition_operator()
         {
             Node node = new Node("Condition_operator");
-            if (TokenStream[tokenIndex].token_type == TINY_Token_Class.GreaterThanOp)
-            {
-                node.children.Add(match(TINY_Token_Class.GreaterThanOp));
-                return node;
-            }
-            else if (TokenStream[tokenIndex].token_type == TINY_Token_Class.LessThanOp)
-            {
-                node.children.Add(match(TINY_Token_Class.LessThanOp));
-                return node;
-            }
-            else if (TokenStream[tokenIndex].token_type == TINY_Token_Class.ISEqualOp)
-            {
-                node.children.Add(match(TINY_Token_Class.ISEqualOp));
-                return node;
-            }
-            else if (TokenStream[tokenIndex].token_type == TINY_Token_Class.NotEqualOp)
-            {
-                node.children.Add(match(TINY_Token_Class.NotEqualOp));
-                return node;
-            }
 
-            return null;
+            if (TokenStream[tokenIndex].token_type == TINY_Token_Class.GreaterThanOp)
+                node.children.Add(match(TINY_Token_Class.GreaterThanOp));
+
+            else if (TokenStream[tokenIndex].token_type == TINY_Token_Class.LessThanOp)
+                node.children.Add(match(TINY_Token_Class.LessThanOp));
+
+            else if (TokenStream[tokenIndex].token_type == TINY_Token_Class.ISEqualOp)
+                node.children.Add(match(TINY_Token_Class.ISEqualOp));
+
+            else if (TokenStream[tokenIndex].token_type == TINY_Token_Class.NotEqualOp)
+                node.children.Add(match(TINY_Token_Class.NotEqualOp));
+
+            return node;
         }
         public Node Return_statement() // not tested ,finish equation first
         {
@@ -453,19 +440,11 @@ namespace JASONParser
                 node.children.Add(match(TINY_Token_Class.OROp));
                 return node;
             }
+
             return null;
-        }
-        public Node Comment_Statement()
-        {
-            return null;
-        }
-        public Node Declarition_statement()
-        {
-            return null;
-        }
-        
+        } 
         //if a+b>5
-        //if a==1 && r !=0 || y==g
+        //if a==1  then g:=4 
         public Node Condition_Statement()
         {
             Node node = new Node("condition_statement");
@@ -476,7 +455,7 @@ namespace JASONParser
             {
                 node.children.Add(condition);
                 Node boolean_Operator = Boolean_Operator();
-                if (boolean_Operator!= null)
+                if (boolean_Operator != null)
                 {
                     node.children.Add(boolean_Operator);
                     Node condition_Statement = Condition_Statement();

@@ -25,9 +25,8 @@ namespace TINY_COMPILER_MILSTONE1
 
         private void button1_Click(object sender, EventArgs e)
         {
-
             dataGridView1.Rows.Clear();
-            richTextBox2.Text = "" ;
+            richTextBox2.Text = "";
             TINY_Compiler.tiny_Scanner.Tokens.Clear();
             Errors.Error_List.Clear();
             TINY_Compiler.TokenStream.Clear();
@@ -37,8 +36,6 @@ namespace TINY_COMPILER_MILSTONE1
             PrintErrors();
             Form2 f = new Form2();
             f.Show();
-
-
         }
         void PrintTokens()
         {
