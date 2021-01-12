@@ -85,8 +85,6 @@ namespace TINY_COMPILER_MILSTONE1
         private void Form1_Load(object sender, EventArgs e)
         {
             dataGridView1.ColumnHeadersDefaultCellStyle.Font = new Font("Monotype Corsiva", 14, FontStyle.Italic);
-
-
             dataGridView1.BackgroundColor = Color.White;
             dataGridView1.ReadOnly = true;
             richTextBox2.ReadOnly = true;
@@ -95,7 +93,6 @@ namespace TINY_COMPILER_MILSTONE1
             richTextBox1.Font = new Font("Monotype Corsiva", 18, FontStyle.Italic);
             richTextBox2.Font = new Font("Monotype Corsiva", 16, FontStyle.Italic);
             dataGridView1.DefaultCellStyle.Font = new Font("Monotype Corsiva", 16, FontStyle.Italic);
-        
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
@@ -105,5 +102,9 @@ namespace TINY_COMPILER_MILSTONE1
 
         }
 
+        private void richTextBox2_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

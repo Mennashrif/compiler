@@ -22,12 +22,13 @@ namespace JASONParser
 
         int tokenIndex = 0;
         static List<TINY_Token> TokenStream;
+        public List<string> Errors;
         public static Node root;
 
         public  Node Parse(List<TINY_Token> Tokens)
         {
             TokenStream = Tokens;
-                 root = DeclarationStatement();
+                 root = Program();
            
             return root;
         }
@@ -46,7 +47,7 @@ namespace JASONParser
             }
              return null;
         }
- 
+     
         public Node Term()
         {
             Node node = new Node("Term");
@@ -99,14 +100,21 @@ namespace JASONParser
         public Node Return_statement() // not tested ,finish equation first
         {
             Node node = new Node("Return_statement");
-            Node Return = match(TINY_Token_Class.Return);
-            Node expression = Expression();
-            Node semicolon = match(TINY_Token_Class.Semicolon);
-            if(Return!=null && expression!=null && semicolon != null)
+
+            if (ISmatch(TINY_Token_Class.Return, tokenIndex))
             {
-                node.children.Add(Return);
-                node.children.Add(expression);
-                node.children.Add(semicolon);
+                node.children.Add(match(TINY_Token_Class.Return));
+
+                Node expression = Expression();
+                if (expression != null)
+                {
+                    node.children.Add(expression);
+                    if (ISmatch(TINY_Token_Class.Semicolon, tokenIndex))
+                    {
+                        node.children.Add(match(TINY_Token_Class.Semicolon));
+                        return node;
+                    }
+                }
             }
             return null;
         }
@@ -114,32 +122,45 @@ namespace JASONParser
         {
             Node node = new Node("ReadStatement");
             Node read = match(TINY_Token_Class.read);
-            Node identifier = match(TINY_Token_Class.Identifier);
-            Node semicolon = match(TINY_Token_Class.Semicolon);
-            if (read != null && identifier != null && semicolon != null)
+            if (read != null)
             {
                 node.children.Add(read);
-                node.children.Add(identifier);
-                node.children.Add(semicolon);
-                return node;
-            }
+                Node identifier = match(TINY_Token_Class.Identifier);
+                if (identifier != null)
+                {
+                  node.children.Add(identifier);
+                  Node semicolon = match(TINY_Token_Class.Semicolon);
+                  if(semicolon != null)
+                    {
+                     node.children.Add(semicolon);
+                        return node;
+                    }
+                }
+            }   
             return null;
         }
         public Node WriteStatement()// not tested ,finish equation first 
         {
             Node node = new Node("WriteStatement");
             Node write = match(TINY_Token_Class.write);
-            Node expression = Expression();
-            Node endl = match(TINY_Token_Class.endl);
-            Node semicolon = match(TINY_Token_Class.Semicolon);
-            if (write != null && expression != null && endl != null && semicolon != null)
+            if (write != null)
             {
                 node.children.Add(write);
-                node.children.Add(expression);
-                node.children.Add(endl);
-                node.children.Add(semicolon);
-                return node;
+                Node expression = Expression();
+                if (expression != null) {
+                    node.children.Add(expression);
+                    Node endl = match(TINY_Token_Class.endl);
+                    if (endl != null) 
+                        node.children.Add(endl);
+                    Node semicolon = match(TINY_Token_Class.Semicolon);
+                    if (semicolon != null){
+                            node.children.Add(semicolon);
+                            return node;
+                        
+                    }
+                }
             }
+            
             return null;
         }
         public Node Datatype()
@@ -167,38 +188,49 @@ namespace JASONParser
         {
             Node node = new Node("Assignment_Statement");
             Node id= match(TINY_Token_Class.Identifier);
-            Node equal = match(TINY_Token_Class.ISEqualOp);
-            Node expression = Expression();
-            if(id != null && equal != null && expression != null)
+            if (id != null)
             {
                 node.children.Add(id);
-                node.children.Add(equal);
-                node.children.Add(expression);
-                return node;
+                Node assignmentlOp = match(TINY_Token_Class.AssignmentlOp);
+                if (assignmentlOp != null)
+                {
+                   node.children.Add(assignmentlOp);
+                   Node expression = Expression();
+                    if (expression != null)
+                    {
+                        node.children.Add(expression);
+                        Node semicolon = match(TINY_Token_Class.Semicolon);
+                        if (semicolon != null)
+                        {
+                            node.children.Add(semicolon);
+                            return node;
+                        }
+                    }
+                }
             }
             return null;
         }
         public Node Expression()
         {
             Node node = new Node("Expression");
-            Node String = match(TINY_Token_Class.String);
-            Node term = Term();
-            Node equation = Equation();
-            if (String != null)
+            
+            //Node equation = Equation();
+            if (ISmatch(TINY_Token_Class.Stringstat,tokenIndex))
             {
-                node.children.Add(String);
+                node.children.Add(match(TINY_Token_Class.Stringstat));
                 return node;
             }
-            else if (term != null)
+            Node term = Term();
+            if (term != null)
             {
                 node.children.Add(term);
                 return node;
             }
-            else if (equation != null)
-            {
-                node.children.Add(equation);
-                return node;
-            }    
+            //else if (equation != null)
+            //{
+            //    node.children.Add(equation);
+            //    return node;
+            //}    
             
             return null;
         }
@@ -332,20 +364,34 @@ namespace JASONParser
             if (ISmatch(TINY_Token_Class.RParanthesis,tokenIndex))
             {
                 node.children.Add(match(TINY_Token_Class.RParanthesis));
-                return node;
+                if (ISmatch(TINY_Token_Class.Semicolon, tokenIndex))
+                {
+                    node.children.Add(match(TINY_Token_Class.Semicolon));
+                    return node;
+                }
             }
             else if (ISmatch(TINY_Token_Class.Identifier, tokenIndex) && ISmatch(TINY_Token_Class.RParanthesis, tokenIndex+1))
             {
                 node.children.Add(match(TINY_Token_Class.Identifier));
                 node.children.Add(match(TINY_Token_Class.RParanthesis));
+                if (ISmatch(TINY_Token_Class.Semicolon, tokenIndex))
+                {
+                    node.children.Add(match(TINY_Token_Class.Semicolon));
                     return node;
-           }
+                }
+            }
             else
             {
                 parameter(node);
-                 return node;
+                if (ISmatch(TINY_Token_Class.Semicolon, tokenIndex))
+                {
+                    node.children.Add(match(TINY_Token_Class.Semicolon));
+                    return node;
+                }
                 
+
             }
+            return null;
         }
 
         private void parameter(Node node)
@@ -359,7 +405,7 @@ namespace JASONParser
             else
             {
                 node.children.Add(match(TINY_Token_Class.Comma));
-                node.children.Add(match(TINY_Token_Class.Identifier));
+                node.children.Add(Expression());
                 parameter(node);
 
             }
@@ -393,6 +439,456 @@ namespace JASONParser
             return false;
         }
 
+        //had la amany
+        public Node Boolean_Operator()
+        {
+            Node node = new Node("Boolean_Operator");
+            if (ISmatch(TINY_Token_Class.AndOp,tokenIndex))
+            {
+                node.children.Add(match(TINY_Token_Class.AndOp));
+                return node;
+            }
+            else if (ISmatch(TINY_Token_Class.OROp,tokenIndex))
+            {
+                node.children.Add(match(TINY_Token_Class.OROp));
+                return node;
+            }
+            return null;
+        }
+        public Node Comment_Statement()
+        {
+            return null;
+        }
+        public Node Declarition_statement()
+        {
+            return null;
+        }
+        
+        //if a+b>5
+        //if a==1 && r !=0 || y==g
+        public Node Condition_Statement()
+        {
+            Node node = new Node("condition_statement");
+            Node condition = Condition();
+            
+           
+            if (condition != null)
+            {
+                node.children.Add(condition);
+                Node boolean_Operator = Boolean_Operator();
+                if (boolean_Operator!= null)
+                {
+                    node.children.Add(boolean_Operator);
+                    Node condition_Statement = Condition_Statement();
+                    node.children.Add(condition_Statement);
+                }
+                return node;
+               
+            }
+            return null;
+        }
+        public Node Statements()
+        {
+            Node node = new Node("Statements");
+            Node statement = Statement();
+            if (statement!= null)
+            {
+                node.children.Add(statement);
+                Node statements = Statements();
+            }
+             return node;
+        }
+        public Node Statement()
+        {
+            Node node = new Node("Statement");
+            Node writeStatement = WriteStatement();
+            if (writeStatement != null)
+            {
+                node.children.Add(writeStatement);
+                return node;
+            }
+            Node readStatement = ReadStatement();
+            if (readStatement != null)
+            {
+                node.children.Add(readStatement);
+                return node;
+            }
+            Node comment_Statement = match(TINY_Token_Class.Comment);
+            if (comment_Statement != null)
+            {
+                node.children.Add(comment_Statement);
+                return node;
+            }
+            Node repeat_statement = Repeat_statement();
+            if (repeat_statement != null)
+            {
+                node.children.Add(repeat_statement);
+                return node;
+            }
+            Node declarationStatement = DeclarationStatement();
+            if (declarationStatement != null)
+            {
+                node.children.Add(declarationStatement);
+                return node;
+            }
+            Node If_statement = if_statement();
+            if (If_statement != null)
+            {
+                node.children.Add(If_statement);
+                return node;
+            }
+            Node return_statement = Return_statement();
+            if (return_statement != null)
+            {
+                node.children.Add(return_statement);
+                return node;
+            }
+            Node function_Call = Function_Call();
+            if (function_Call != null)
+            {
+                node.children.Add(function_Call);
+                return node;
+            }
+            Node assignment_Statement = Assignment_Statement();
+            if (assignment_Statement != null)
+            {
+                node.children.Add(assignment_Statement);
+                return node;
+            }
+            return null;
+        }
+        public Node if_statement()
+        {
+            Node node = new Node("if_statement");
+
+            if (ISmatch(TINY_Token_Class.If,tokenIndex))
+            {  
+                node.children.Add(match(TINY_Token_Class.If));
+                Node condition_Statement = Condition_Statement();
+                if (condition_Statement!= null)
+                {
+                    node.children.Add(condition_Statement);
+                    if (ISmatch(TINY_Token_Class.then,tokenIndex) )
+                    {   
+                        node.children.Add(match(TINY_Token_Class.then));
+                        Node statements = Statements();
+                        if (statements!=null)
+                          node.children.Add(statements);
+                        Node elseClaose = Else_Claose();
+                        if (elseClaose != null)
+                        {
+                            node.children.Add(elseClaose);
+                            return node;
+                        }
+                    }
+                }
+            }
+
+            return null;
+        }
+
+        public Node ELse_if_statement()
+        {
+            Node node = new Node("Else_if_statement");
+
+            if (ISmatch(TINY_Token_Class.Elseif,tokenIndex))
+            {
+                node.children.Add(match(TINY_Token_Class.Elseif));
+                Node condition_Statement = Condition_Statement();
+                if (condition_Statement != null)
+                {
+                    node.children.Add(condition_Statement);
+                    if (match(TINY_Token_Class.then) != null)
+                    {
+                        node.children.Add(match(TINY_Token_Class.then));
+                        Node statements = Statements();
+                        if (statements != null)
+                            node.children.Add(statements);
+                        Node else_Claose = Else_Claose();
+                        if (else_Claose != null)
+                        {
+                            node.children.Add(else_Claose);
+                            return node;
+                        }  
+                    }
+                }
+            }
+
+        return null;
+        }
+        public Node Else_statement()
+        {
+            Node node = new Node("else_statement");
+
+            if (ISmatch(TINY_Token_Class.Else,tokenIndex))
+            {
+                node.children.Add(match(TINY_Token_Class.Else));
+                Node statements = Statements();
+                if (statements != null)
+                {    
+                    node.children.Add(statements);
+                    if (ISmatch(TINY_Token_Class.endl,tokenIndex))
+                    {
+                        node.children.Add(match(TINY_Token_Class.endl));
+                        return node;
+                    }
+                }
+            }
+
+            return null;
+        }
+        public Node Else_Claose()
+        {
+            Node node = new Node("Else_Claose");
+            Node eLse_if_statement = ELse_if_statement();
+            if (eLse_if_statement != null)
+            {
+                node.children.Add(eLse_if_statement);
+                return node;
+            }
+            Node else_statement = Else_statement();
+            if (else_statement != null)
+            {
+                node.children.Add(else_statement);
+                return node;
+            }
+            if (ISmatch(TINY_Token_Class.endl,tokenIndex))
+            {
+                node.children.Add(match(TINY_Token_Class.endl));
+                return node;
+            }
+            return null;
+        }
+        public Node Repeat_statement()
+        {
+            Node node = new Node("Repeat_statement");
+            if (ISmatch(TINY_Token_Class.repeat,tokenIndex))
+            {
+                node.children.Add(match(TINY_Token_Class.repeat));
+                Node statements = Statements();
+                if (statements != null)
+                {
+                    node.children.Add(statements);
+                    if (ISmatch(TINY_Token_Class.until,tokenIndex))
+                    {
+                        node.children.Add(match(TINY_Token_Class.until));
+                        Node condition_Statement = Condition_Statement();
+                        if (condition_Statement!= null)
+                        {
+                            node.children.Add(condition_Statement);
+                            return node;
+                        }
+                    }
+                }
+            }
+            return null;
+        }
+        //da bta3 tasneem 
+        public Node FunctionName()
+        {
+            Node node = new Node("Function Name");
+            Node identifier = match(TINY_Token_Class.Identifier);
+
+            if (identifier != null && ! ISmatch(TINY_Token_Class.main,tokenIndex))
+            {
+                node.children.Add(identifier);
+                return node;
+            }
+            return null;
+        }
+
+
+        public Node Parameter()
+        {
+            Node node = new Node(" Parameter ");
+            Node dataType = Datatype();
+
+            if (dataType != null)
+            {
+                node.children.Add(dataType);
+                Node identifier = match(TINY_Token_Class.Identifier);
+                if (identifier != null)
+                {
+                    node.children.Add(identifier);
+                    return node;
+                }
+
+            }
+            return null;
+        }
+        //EX : int sum(int a, int b) 
+        public Node FunctionDeclaration()
+        {
+            Node node = new Node(" Function Declaration ");
+            Node dataType = Datatype();
+            if (dataType != null)
+            {
+                node.children.Add(dataType);
+                Node FunName = FunctionName();
+                if (FunName != null)
+                {
+                    node.children.Add(FunName);
+                    if (ISmatch(TINY_Token_Class.LParanthesis, tokenIndex))
+                    {
+                        node.children.Add(match(TINY_Token_Class.LParanthesis));
+                        Node attrib = FunctionAttribute();
+                        if (attrib != null)
+                        {
+                            node.children.Add(attrib);
+                        }
+                        if (ISmatch(TINY_Token_Class.RParanthesis, tokenIndex))
+                        {
+                            node.children.Add(match(TINY_Token_Class.RParanthesis));
+                        }
+                        return node;
+                    }
+                }
+            }
+            return null;
+        }
+        // EX : int a, int b,int c 
+        public Node FunctionAttribute()
+        {
+            Node node = new Node(" Function Attribute ");
+            Node parameter = Parameter();
+            if (parameter != null)
+            {
+                node.children.Add(parameter);
+                Node attributess = Attributess();
+                if (attributess != null)
+                {
+                    node.children.Add(attributess);
+
+                }
+                return node;
+            }
+            return null;
+        }
+
+        public Node Attributess()
+        {
+            Node node = new Node(" Function Attributes ");
+            if (ISmatch(TINY_Token_Class.Comma, tokenIndex))
+            {
+                node.children.Add(match(TINY_Token_Class.Comma));
+                Node parameter = Parameter();
+
+                if (parameter != null)
+                {
+
+                    node.children.Add(parameter);
+                    Node attributess = Attributess();
+                    node.children.Add(attributess);
+                    return node;
+                }
+
+            }
+            return null;
+        }
+
+
+        public Node Function_Body()
+        {
+            Node node = new Node(" Function Boby ");
+
+            if (ISmatch(TINY_Token_Class.Lcarlypracket, tokenIndex))
+            {
+                node.children.Add(match(TINY_Token_Class.Lcarlypracket));
+                Node statment = Statements();
+                if (statment != null)
+                    node.children.Add(statment); 
+
+                if (statment.children.ElementAt(0).children.ElementAt(0).Name == "Return_statement")
+                {
+                    if (ISmatch(TINY_Token_Class.Rcarlypracket, tokenIndex))
+                    {
+                        node.children.Add(match(TINY_Token_Class.Rcarlypracket));
+                        return node;
+                    }
+                }
+            }
+            return null;
+        }
+
+        // int sum () { body }
+        public Node Function_Statement()
+        {
+            Node node = new Node(" Function Statment ");
+            Node funDec = FunctionDeclaration();
+            if (funDec != null)
+            {
+                node.children.Add(funDec);
+                Node funBody = Function_Body();
+                if (funBody != null)
+                {
+                    node.children.Add(funBody);
+                    return node;
+                }
+            }
+            return null;
+        }
+
+        public Node Main_Function()
+        {
+            Node node = new Node(" Main Function ");
+            Node data = Datatype();
+            if (data != null)
+            {
+                node.children.Add(data);
+                if (ISmatch(TINY_Token_Class.main, tokenIndex))
+                {
+                    node.children.Add(match(TINY_Token_Class.main));
+                    if (ISmatch(TINY_Token_Class.LParanthesis, tokenIndex) && ISmatch(TINY_Token_Class.RParanthesis, tokenIndex + 1))
+                    {
+
+                        node.children.Add(match(TINY_Token_Class.LParanthesis));
+                        node.children.Add(match(TINY_Token_Class.RParanthesis));
+
+                        Node body = Function_Body();
+                        if (body != null)
+                        {
+                            node.children.Add(body);
+                            return node;
+
+                        }
+                        return node;
+                    }
+
+                }
+            }
+            return null;
+        }
+
+        public Node Program()
+        {
+            Node node = new Node(" Program ");
+            Node functionss = Functionss();
+            if (functionss != null)
+            {
+                node.children.Add(functionss);
+
+            }
+            Node main = Main_Function();
+            if (main != null)
+            {
+                node.children.Add(main);
+                return node;
+            }
+            return null;
+        }
+
+        public Node Functionss()
+        {
+            Node node = new Node("Functionss ");
+            Node function = Function_Statement();
+            if (function != null)
+            {
+                node.children.Add(function);
+                Node functionss = Functionss();
+                node.children.Add(functionss);
+            }
+            return node;
+        }
         //use this function to print the parse tree in TreeView Toolbox
         public static TreeNode PrintParseTree(Node root)
         {

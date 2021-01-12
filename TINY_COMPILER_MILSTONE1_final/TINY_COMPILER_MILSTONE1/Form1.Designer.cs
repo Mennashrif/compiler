@@ -66,6 +66,7 @@
             this.dataGridView1.Location = new System.Drawing.Point(686, 26);
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
             this.dataGridView1.Size = new System.Drawing.Size(846, 503);
             this.dataGridView1.TabIndex = 3;
@@ -74,12 +75,14 @@
             // Column1
             // 
             this.Column1.HeaderText = "Lexeme";
+            this.Column1.MinimumWidth = 6;
             this.Column1.Name = "Column1";
             this.Column1.Width = 150;
             // 
             // Column2
             // 
             this.Column2.HeaderText = "Tokens";
+            this.Column2.MinimumWidth = 6;
             this.Column2.Name = "Column2";
             this.Column2.Width = 200;
             // 
@@ -140,6 +143,7 @@
             this.richTextBox2.Size = new System.Drawing.Size(522, 303);
             this.richTextBox2.TabIndex = 8;
             this.richTextBox2.Text = "";
+            this.richTextBox2.TextChanged += new System.EventHandler(this.richTextBox2_TextChanged);
             // 
             // Form1
             // 
