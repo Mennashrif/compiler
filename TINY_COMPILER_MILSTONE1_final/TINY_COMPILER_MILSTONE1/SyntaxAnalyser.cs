@@ -320,26 +320,31 @@ namespace JASONParser
         public Node Expression()
         {
             Node node = new Node("Expression");
+            Node equation = Equation();
 
-            //Node equation = Equation();
+
+
             if (ISmatch(TINY_Token_Class.Stringstat, tokenIndex))
             {
                 node.children.Add(match(TINY_Token_Class.Stringstat));
 
             }
-            Node term = Term();
-            if (term.children.Count != 0)
+
+
+            else if (equation.children.Count > 1)
             {
-                node.children.Add(term);
-
+                node.children.Add(equation);
+                return node;
             }
-
-            //else if (equation != null)
-            //{
-            //    node.children.Add(equation);
-            //    return node;
-            //}    
-
+            else if (equation.children.Count == 1)
+            {
+                Node term = equation.children[0];
+                if (term.children.Count != 0)
+                {
+                    node.children.Add(term);
+                    return node;
+                }
+            }
             return node;
         }
         public Node Arithmatic_Operation()
@@ -371,80 +376,89 @@ namespace JASONParser
         public Node Equation()
         {
             Node node = new Node("Equation");
-            Node equationDach = EquationDach();
-            if (equationDach != null)
+            Node term = Term();
+            Node arithmatic_Operation = Arithmatic_Operation();
+            if (term.children.Count != 0)
             {
-                node.children.Add(equationDach);
-                return node;
-            }
-
-            else
-            {
-                node.children.Add(Equation());
-                Node arithmatic_Operation = Arithmatic_Operation();
+                node.children.Add(term);
                 if (arithmatic_Operation != null)
                 {
-                    node.children.Add(arithmatic_Operation);
-                    node.children.Add(Equation());
                     
+                    node.children.Add(arithmatic_Operation);
+                    Node E = Equation();
+                    if (E.children.Count != 0)
+                        node.children.Add(E);
                 }
+             
+
             }
-            return null;
+            
+            term = Term();
+            if (term.children.Count != 0 && arithmatic_Operation != null)
+            {
+                node.children.Add(arithmatic_Operation);
+                node.children.Add(term);
+                Node E = Equation();
+                if (E.children.Count != 0)
+                    node.children.Add(E);
+            }
+
+            else if (arithmatic_Operation != null)
+            {
+                
+                Node E = EquationDach();
+                if(E.children.Count!=0)
+                 node.children.Add(E);
+            }
+            return node;
+           
                 
         }
         public Node EquationDach()
         {
             Node node = new Node("EquationDach");
-            Node term = Term();
             Node arithmatic_Operation = Arithmatic_Operation();
+            Node LP = match(TINY_Token_Class.LParanthesis);
             Node RP = match(TINY_Token_Class.RParanthesis);
-            
-            if (term.children.Count != 0 && arithmatic_Operation == null)
+            if(arithmatic_Operation!=null && LP != null)
             {
-                node.children.Add(term);
-                return node;
+                node.children.Add(arithmatic_Operation);
+                node.children.Add(LP);
+                Node E = EquationDach();
+                if (E.children.Count != 0)
+                    node.children.Add(E);
             }
-            else if(arithmatic_Operation==null && RP != null)
+            else if(arithmatic_Operation != null && LP == null)
             {
-                
-                node.children.Add(match(TINY_Token_Class.RParanthesis));
-                return node;
+                tokenIndex -= 1;
+                Node E = Equation();
+                if (E.children.Count != 0)
+                    node.children.Add(E);
             }
-            else if(RP != null) {
-                node.children.Add(match(TINY_Token_Class.RParanthesis));
-                 }
-            tokenIndex -= (term.children.Count );
-            tokenIndex -= (arithmatic_Operation.children.Count);
-            if (ISmatch(TINY_Token_Class.LParanthesis, tokenIndex))
+            else if (LP != null)
             {
-                node.children.Add(match(TINY_Token_Class.LParanthesis));
-                node.children.Add(Equation());
-                
-                return node;
+                node.children.Add(LP);
+                Node E = EquationDach();
+                if (E.children.Count != 0)
+                    node.children.Add(E);
             }
-            return null;
+            else if(RP!=null)
+            {
+                node.children.Add(RP);
+                Node E = EquationDach();
+                if (E.children.Count != 0)
+                    node.children.Add(E);
+            }
+            else
+            {
+                Node E = Equation();
+                if (E.children.Count != 0)
+                    node.children.Add(E);
+            }
+            return node;
+          
         }
-        //public void Left(Node node)
-        //{
-        //    if (ISmatch(TINY_Token_Class.LParanthesis, tokenIndex) || (Term() != null && tokenIndex == TokenStream.Count - 1))
-        //    {
-        //        return;
-        //    }
-        //    else
-        //    {
-        //        node.children.Add(Term());
-        //        node.children.Add(Arithmatic_Operation());
-        //    }
-
-        //}
-        //public void Mid(Node node)
-        //{
-        //    return;
-        //}
-        //public void Right(Node node)
-        //{
-        //    return;
-        //}
+        
 
         public Node DeclarationStatement()      //semicolon error
         {
