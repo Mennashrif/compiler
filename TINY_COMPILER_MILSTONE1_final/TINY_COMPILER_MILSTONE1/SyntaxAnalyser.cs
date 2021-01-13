@@ -663,9 +663,16 @@ namespace JASONParser
                     node.children.Add(boolean_Operator);
                     Node condition_Statement = Condition_Statement();
                     node.children.Add(condition_Statement);
+                    if (condition_Statement.children.ElementAt(0).children.Count == 0) {
+                        Errors.Add(" At " + node.Name + " expected condition after boolean operation !! ");
+                        return null;
+                    }
                 }
                 return node;
-
+            }
+            else {
+                Errors.Add("at" + node.Name + " there is no conditions");
+                return null;
             }
             return null;
         }
@@ -748,7 +755,7 @@ namespace JASONParser
             {
                 node.children.Add(match(TINY_Token_Class.If));
                 Node condition_Statement = Condition_Statement();
-                if (condition_Statement != null)
+                if (condition_Statement.children.ElementAt(0).children.Count != 0)
                 {
                     node.children.Add(condition_Statement);
                     if (ISmatch(TINY_Token_Class.then, tokenIndex))
@@ -763,7 +770,18 @@ namespace JASONParser
                             node.children.Add(elseClaose);
                             return node;
                         }
+                        
                     }
+                    else
+                    {
+                        Errors.Add(" At " + node.Name + " expected then after if !! ");
+                        return node;
+                    }
+                }
+                else if (condition_Statement.children.ElementAt(0).children.Count == 0)
+                {
+                    Errors.Add(" At " + node.Name + " expected condition after if !!");
+                    return node;
                 }
             }
 
@@ -778,7 +796,7 @@ namespace JASONParser
             {
                 node.children.Add(match(TINY_Token_Class.Elseif));
                 Node condition_Statement = Condition_Statement();
-                if (condition_Statement != null)
+                if (condition_Statement.children.ElementAt(0).children.Count != 0)
                 {
                     node.children.Add(condition_Statement);
                     if (match(TINY_Token_Class.then) != null)
@@ -793,7 +811,18 @@ namespace JASONParser
                             node.children.Add(else_Claose);
                             return node;
                         }
+                        
                     }
+                    else
+                    {
+                        Errors.Add(" At " + node.Name + " expected then after elseif  !! ");
+                        return node;
+                    }
+                }
+                else if (condition_Statement.children.ElementAt(0).children.Count == 0)
+                {
+                    Errors.Add(" At " + node.Name + " expected condition after elseif  !!");
+                    return node;
                 }
             }
 
@@ -814,6 +843,11 @@ namespace JASONParser
                     {
                         node.children.Add(match(TINY_Token_Class.end));
                         return node;
+                    }
+                    else
+                    {
+                        Errors.Add(" there is no end after else  !! ");
+                        return node; 
                     }
                 }
             }
@@ -840,7 +874,9 @@ namespace JASONParser
                 node.children.Add(match(TINY_Token_Class.end));
                 return node;
             }
-            return null;
+            
+            Errors.Add(" there is no end or elseif or else after else if  !! ");
+            return node;
         }
         public Node Repeat_statement()
         {
@@ -849,19 +885,35 @@ namespace JASONParser
             {
                 node.children.Add(match(TINY_Token_Class.repeat));
                 Node statements = Statements();
-                if (statements != null)
+                if (statements.children.Count != 0)
                 {
                     node.children.Add(statements);
                     if (ISmatch(TINY_Token_Class.until, tokenIndex))
                     {
                         node.children.Add(match(TINY_Token_Class.until));
                         Node condition_Statement = Condition_Statement();
-                        if (condition_Statement != null)
+                        if (condition_Statement.children.ElementAt(0).children.Count!=0)
                         {
                             node.children.Add(condition_Statement);
                             return node;
                         }
+                        else
+                        {
+                            Errors.Add(" Expected condition after until in Repeat_statement !! ");
+                            return node;
+                        }
+
                     }
+                    else
+                    {
+                        Errors.Add(" Expected until after Repeat_statement !! ");
+                        return node;
+                    }
+                }
+                else 
+                {
+                    Errors.Add(" There is no statements in Repeat_statement !! ");
+                    return node;
                 }
             }
             return null;

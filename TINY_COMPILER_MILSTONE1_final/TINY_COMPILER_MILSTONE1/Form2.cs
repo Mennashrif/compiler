@@ -22,7 +22,7 @@ namespace TINY_COMPILER_MILSTONE1
             for (int i = 0; i < SA.Errors.Count; i++)
             {
                 MessageBox.Show(SA.Errors[i]);
-                richTextBox2.Text += SA.Errors[i];
+                richTextBox2.Text += (i+1)+"- " + SA.Errors[i] + "\n";
             }
             
         }
@@ -33,6 +33,11 @@ namespace TINY_COMPILER_MILSTONE1
         }
 
         private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void richTextBox2_TextChanged(object sender, EventArgs e)
         {
 
         }

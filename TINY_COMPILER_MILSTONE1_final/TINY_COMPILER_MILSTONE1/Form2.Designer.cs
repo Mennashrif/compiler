@@ -35,20 +35,21 @@
             // 
             // treeView1
             // 
-            this.treeView1.Location = new System.Drawing.Point(40, 10);
-            this.treeView1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.treeView1.Location = new System.Drawing.Point(30, 8);
             this.treeView1.Name = "treeView1";
-            this.treeView1.Size = new System.Drawing.Size(679, 896);
+            this.treeView1.Size = new System.Drawing.Size(510, 729);
             this.treeView1.TabIndex = 1;
             this.treeView1.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView1_AfterSelect);
             // 
             // richTextBox2
             // 
-            this.richTextBox2.Location = new System.Drawing.Point(726, 385);
+            this.richTextBox2.Location = new System.Drawing.Point(544, 313);
+            this.richTextBox2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.richTextBox2.Name = "richTextBox2";
-            this.richTextBox2.Size = new System.Drawing.Size(522, 303);
+            this.richTextBox2.Size = new System.Drawing.Size(392, 247);
             this.richTextBox2.TabIndex = 10;
             this.richTextBox2.Text = "";
+            this.richTextBox2.TextChanged += new System.EventHandler(this.richTextBox2_TextChanged);
             // 
             // label2
             // 
@@ -56,8 +57,7 @@
             this.label2.BackColor = System.Drawing.Color.Transparent;
             this.label2.Font = new System.Drawing.Font("Monotype Corsiva", 13.8F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label2.Location = new System.Drawing.Point(742, 355);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label2.Location = new System.Drawing.Point(556, 288);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(109, 28);
             this.label2.TabIndex = 9;
@@ -66,13 +66,12 @@
             // 
             // Form2
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1271, 922);
+            this.ClientSize = new System.Drawing.Size(953, 749);
             this.Controls.Add(this.richTextBox2);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.treeView1);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "Form2";
             this.Text = "Form2";
             this.ResumeLayout(false);
