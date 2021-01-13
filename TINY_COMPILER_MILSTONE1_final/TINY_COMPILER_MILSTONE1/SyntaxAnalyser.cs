@@ -1023,7 +1023,7 @@ namespace JASONParser
 
 
         public Node Function_Body()
-        {
+        { 
             Node node = new Node(" Function Boby ");
 
             if (ISmatch(TINY_Token_Class.Lcarlypracket, tokenIndex))
@@ -1037,6 +1037,16 @@ namespace JASONParser
                     node.children.Add(match(TINY_Token_Class.Rcarlypracket));
                     return node;
                 }
+                else
+                {
+                    Errors.Add(" Expected \" } \" after function Declarition !!  ");
+                    return node;
+                }
+            }
+            else
+            {
+                Errors.Add(" Expected \" { \" after function Declarition !!  ");
+                return node; 
             }
             return null;
         }
@@ -1100,10 +1110,15 @@ namespace JASONParser
                 tokenIndex -= 1;
             }
 
-            Node mainn = Main_Function();
-            if (mainn != null)
+            Node main = Main_Function();
+            if (main != null)
             {
-                node.children.Add(mainn);
+                node.children.Add(main);
+                return node;
+            }
+            else
+            {
+                Errors.Add(" There is no main function in Program !! ");
                 return node;
             }
             return null;
