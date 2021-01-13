@@ -19,9 +19,20 @@ namespace TINY_COMPILER_MILSTONE1
             SyntaxAnalyser SA = new SyntaxAnalyser();
             Node root = SA.Parse(TINY_Compiler.tiny_Scanner.Tokens);
             treeView1.Nodes.Add(SyntaxAnalyser.PrintParseTree(root));
+            for (int i = 0; i < SA.Errors.Count; i++)
+            {
+                MessageBox.Show(SA.Errors[i]);
+                richTextBox2.Text += SA.Errors[i];
+            }
+            
         }
 
         private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
+        {
+
+        }
+
+        private void label2_Click(object sender, EventArgs e)
         {
 
         }
