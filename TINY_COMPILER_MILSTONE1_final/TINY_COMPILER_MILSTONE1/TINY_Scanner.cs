@@ -17,7 +17,7 @@ namespace TINY_COMPILER_MILSTONE1
 
     Int, Float,String,read,write,repeat,until,If,Elseif,Else,then,Return,endl,main,
 
-    Identifier, Constant, Comment, Number, Stringstat
+    Identifier, Constant, Comment, Number, Stringstat,end
 
 }
 
@@ -55,7 +55,7 @@ namespace TINY_COMPILER_MILSTONE1
             ReservedWords.Add("then", TINY_Token_Class.then);
             ReservedWords.Add("write", TINY_Token_Class.write);
             ReservedWords.Add("main", TINY_Token_Class.main);
-
+            ReservedWords.Add("end", TINY_Token_Class.end);
 
             Operators.Add(".", TINY_Token_Class.Dot);
             Operators.Add(";", TINY_Token_Class.Semicolon);

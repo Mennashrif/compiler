@@ -28,7 +28,7 @@ namespace JASONParser
         public Node Parse(List<TINY_Token> Tokens)
         {
             TokenStream = Tokens;
-            root = Equation();
+            root = Program();
 
             return root;
         }
@@ -103,6 +103,11 @@ namespace JASONParser
             else if (ISmatch(TINY_Token_Class.endl, tokenIndex))
             {
                 node.children.Add(match(TINY_Token_Class.endl));
+                return node;
+            }
+            else if (ISmatch(TINY_Token_Class.end, tokenIndex))
+            {
+                node.children.Add(match(TINY_Token_Class.end));
                 return node;
             }
             else
@@ -805,9 +810,9 @@ namespace JASONParser
                 if (statements != null)
                 {
                     node.children.Add(statements);
-                    if (ISmatch(TINY_Token_Class.endl, tokenIndex))
+                    if (ISmatch(TINY_Token_Class.end, tokenIndex))
                     {
-                        node.children.Add(match(TINY_Token_Class.endl));
+                        node.children.Add(match(TINY_Token_Class.end));
                         return node;
                     }
                 }
@@ -830,9 +835,9 @@ namespace JASONParser
                 node.children.Add(else_statement);
                 return node;
             }
-            if (ISmatch(TINY_Token_Class.endl, tokenIndex))
+            if (ISmatch(TINY_Token_Class.end, tokenIndex))
             {
-                node.children.Add(match(TINY_Token_Class.endl));
+                node.children.Add(match(TINY_Token_Class.end));
                 return node;
             }
             return null;
@@ -975,16 +980,11 @@ namespace JASONParser
                 Node statment = Statements();
                 if (statment != null)
                     node.children.Add(statment);
-                //var name = statment.children[statment.children.Count - 1].children.ElementAt(0).Name;
-                //MessageBox.Show(name);
-                //if (name == "Return_statement")
-                //{
-                    if (ISmatch(TINY_Token_Class.Rcarlypracket, tokenIndex))
-                    {
-                        node.children.Add(match(TINY_Token_Class.Rcarlypracket));
-                        return node;
-                    }
-                //}
+                if (ISmatch(TINY_Token_Class.Rcarlypracket, tokenIndex))
+                {
+                    node.children.Add(match(TINY_Token_Class.Rcarlypracket));
+                    return node;
+                }
             }
             return null;
         }

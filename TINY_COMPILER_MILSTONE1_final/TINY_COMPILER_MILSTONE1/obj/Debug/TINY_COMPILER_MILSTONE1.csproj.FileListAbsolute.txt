@@ -77,3 +77,14 @@ E:\compiler\projecttt\3project\compiler\TINY_COMPILER_MILSTONE1_final\TINY_COMPI
 D:\4rd year\projects\compiler\TINY_COMPILER_MILSTONE1_final\TINY_COMPILER_MILSTONE1\obj\Debug\TINY_COMPILER_MILSTONE1.csprojResolveAssemblyReference.cache
 D:\4rd year\projects\compiler\TINY_COMPILER_MILSTONE1_final\TINY_COMPILER_MILSTONE1\obj\Debug\TINY_COMPILER_MILSTONE1.Form1.resources
 D:\4rd year\projects\compiler\TINY_COMPILER_MILSTONE1_final\TINY_COMPILER_MILSTONE1\obj\Debug\TINY_COMPILER_MILSTONE1.Form2.resources
+D:\4thYear\compiler\project3\compiler\TINY_COMPILER_MILSTONE1_final\TINY_COMPILER_MILSTONE1\bin\Debug\TINY_COMPILER_MILSTONE1.exe.config
+D:\4thYear\compiler\project3\compiler\TINY_COMPILER_MILSTONE1_final\TINY_COMPILER_MILSTONE1\bin\Debug\TINY_COMPILER_MILSTONE1.exe
+D:\4thYear\compiler\project3\compiler\TINY_COMPILER_MILSTONE1_final\TINY_COMPILER_MILSTONE1\bin\Debug\TINY_COMPILER_MILSTONE1.pdb
+D:\4thYear\compiler\project3\compiler\TINY_COMPILER_MILSTONE1_final\TINY_COMPILER_MILSTONE1\obj\Debug\TINY_COMPILER_MILSTONE1.csprojAssemblyReference.cache
+D:\4thYear\compiler\project3\compiler\TINY_COMPILER_MILSTONE1_final\TINY_COMPILER_MILSTONE1\obj\Debug\TINY_COMPILER_MILSTONE1.Form1.resources
+D:\4thYear\compiler\project3\compiler\TINY_COMPILER_MILSTONE1_final\TINY_COMPILER_MILSTONE1\obj\Debug\TINY_COMPILER_MILSTONE1.Form2.resources
+D:\4thYear\compiler\project3\compiler\TINY_COMPILER_MILSTONE1_final\TINY_COMPILER_MILSTONE1\obj\Debug\TINY_COMPILER_MILSTONE1.Properties.Resources.resources
+D:\4thYear\compiler\project3\compiler\TINY_COMPILER_MILSTONE1_final\TINY_COMPILER_MILSTONE1\obj\Debug\TINY_COMPILER_MILSTONE1.csproj.GenerateResource.cache
+D:\4thYear\compiler\project3\compiler\TINY_COMPILER_MILSTONE1_final\TINY_COMPILER_MILSTONE1\obj\Debug\TINY_COMPILER_MILSTONE1.csproj.CoreCompileInputs.cache
+D:\4thYear\compiler\project3\compiler\TINY_COMPILER_MILSTONE1_final\TINY_COMPILER_MILSTONE1\obj\Debug\TINY_COMPILER_MILSTONE1.exe
+D:\4thYear\compiler\project3\compiler\TINY_COMPILER_MILSTONE1_final\TINY_COMPILER_MILSTONE1\obj\Debug\TINY_COMPILER_MILSTONE1.pdb
