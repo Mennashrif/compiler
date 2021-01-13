@@ -25,9 +25,8 @@ namespace TINY_COMPILER_MILSTONE1
 
         private void button1_Click(object sender, EventArgs e)
         {
-
             dataGridView1.Rows.Clear();
-            richTextBox2.Text = "" ;
+            richTextBox2.Text = "";
             TINY_Compiler.tiny_Scanner.Tokens.Clear();
             Errors.Error_List.Clear();
             TINY_Compiler.TokenStream.Clear();
@@ -37,8 +36,6 @@ namespace TINY_COMPILER_MILSTONE1
             PrintErrors();
             Form2 f = new Form2();
             f.Show();
-
-
         }
         void PrintTokens()
         {
@@ -85,8 +82,6 @@ namespace TINY_COMPILER_MILSTONE1
         private void Form1_Load(object sender, EventArgs e)
         {
             dataGridView1.ColumnHeadersDefaultCellStyle.Font = new Font("Monotype Corsiva", 14, FontStyle.Italic);
-
-
             dataGridView1.BackgroundColor = Color.White;
             dataGridView1.ReadOnly = true;
             richTextBox2.ReadOnly = true;
@@ -95,7 +90,6 @@ namespace TINY_COMPILER_MILSTONE1
             richTextBox1.Font = new Font("Monotype Corsiva", 18, FontStyle.Italic);
             richTextBox2.Font = new Font("Monotype Corsiva", 16, FontStyle.Italic);
             dataGridView1.DefaultCellStyle.Font = new Font("Monotype Corsiva", 16, FontStyle.Italic);
-        
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
@@ -105,5 +99,9 @@ namespace TINY_COMPILER_MILSTONE1
 
         }
 
+        private void richTextBox2_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
