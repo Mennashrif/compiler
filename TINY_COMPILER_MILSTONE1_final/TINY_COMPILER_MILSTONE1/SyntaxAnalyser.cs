@@ -768,7 +768,7 @@ namespace JASONParser
             Node node = new Node("Function Name");
             Node identifier = match(TINY_Token_Class.Identifier);
 
-            if (identifier != null && ! ISmatch(TINY_Token_Class.main,tokenIndex))
+            if (identifier != null&&  ISmatch(TINY_Token_Class.main,tokenIndex)==false)
             {
                 node.children.Add(identifier);
                 return node;
@@ -875,9 +875,9 @@ namespace JASONParser
                 node.children.Add(match(TINY_Token_Class.Lcarlypracket));
                 Node statment = Statements();
                 if (statment != null)
-                    node.children.Add(statment); 
-
-                if (statment.children.ElementAt(0).children.ElementAt(0).Name == "Return_statement")
+                    node.children.Add(statment);
+                var name = statment.children[statment.children.Count-1].children.ElementAt(0).Name;
+                if (name == "Return_statement")
                 {
                     if (ISmatch(TINY_Token_Class.Rcarlypracket, tokenIndex))
                     {
@@ -909,28 +909,28 @@ namespace JASONParser
 
         public Node Main_Function()
         {
-            Node node = new Node(" Main Function ");
+            Node nodee = new Node(" Main Function ");
             Node data = Datatype();
             if (data != null)
             {
-                node.children.Add(data);
+                nodee.children.Add(data);
                 if (ISmatch(TINY_Token_Class.main, tokenIndex))
                 {
-                    node.children.Add(match(TINY_Token_Class.main));
+                    nodee.children.Add(match(TINY_Token_Class.main));
                     if (ISmatch(TINY_Token_Class.LParanthesis, tokenIndex) && ISmatch(TINY_Token_Class.RParanthesis, tokenIndex + 1))
                     {
 
-                        node.children.Add(match(TINY_Token_Class.LParanthesis));
-                        node.children.Add(match(TINY_Token_Class.RParanthesis));
+                        nodee.children.Add(match(TINY_Token_Class.LParanthesis));
+                        nodee.children.Add(match(TINY_Token_Class.RParanthesis));
 
                         Node body = Function_Body();
                         if (body != null)
                         {
-                            node.children.Add(body);
-                            return node;
+                            nodee.children.Add(body);
+                            return nodee;
 
                         }
-                        return node;
+                        return nodee;
                     }
 
                 }
@@ -945,12 +945,12 @@ namespace JASONParser
             if (functionss != null)
             {
                 node.children.Add(functionss);
-
             }
-            Node main = Main_Function();
-            if (main != null)
+            tokenIndex -= 1;
+            Node mainn = Main_Function();
+            if (mainn != null)
             {
-                node.children.Add(main);
+                node.children.Add(mainn);
                 return node;
             }
             return null;
