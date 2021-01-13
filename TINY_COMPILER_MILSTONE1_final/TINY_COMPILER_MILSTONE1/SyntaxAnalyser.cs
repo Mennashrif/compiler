@@ -28,7 +28,7 @@ namespace JASONParser
         public Node Parse(List<TINY_Token> Tokens)
         {
             TokenStream = Tokens;
-            root = Program();
+            root = Equation();
 
             return root;
         }
@@ -225,7 +225,7 @@ namespace JASONParser
             {
                 node.children.Add(write);
                 Node expression = Expression();
-                if (expression.children[0].children.Count != 0)
+                if (expression.children.Count != 0)
                     node.children.Add(expression);
                 Node endl = match(TINY_Token_Class.endl);
                 if (endl != null)
@@ -240,7 +240,7 @@ namespace JASONParser
                     Errors.Add("Missing semicolon !! ");
                 }
 
-                if (expression.children[0].children.Count == 0 && endl == null)
+                if (expression.children.Count == 0 && endl == null)
                     Errors.Add("Found write without expression or endl !! ");
             }
             return node;
@@ -366,34 +366,80 @@ namespace JASONParser
         public Node Equation()
         {
             Node node = new Node("Equation");
-            Left(node);
-            Mid(node);
-            if (node == null)
-                return null;
-            Right(node);
-            return node;
-        }
-        public void Left(Node node)
-        {
-            if (ISmatch(TINY_Token_Class.LParanthesis, tokenIndex) || (Term() != null && tokenIndex == TokenStream.Count - 1))
+            Node equationDach = EquationDach();
+            if (equationDach != null)
             {
-                return;
-            }
-            else
-            {
-                node.children.Add(Term());
-                node.children.Add(Arithmatic_Operation());
+                node.children.Add(equationDach);
+                return node;
             }
 
+            else
+            {
+                node.children.Add(Equation());
+                Node arithmatic_Operation = Arithmatic_Operation();
+                if (arithmatic_Operation != null)
+                {
+                    node.children.Add(arithmatic_Operation);
+                    node.children.Add(Equation());
+                    
+                }
+            }
+            return null;
+                
         }
-        public void Mid(Node node)
+        public Node EquationDach()
         {
-            return;
+            Node node = new Node("EquationDach");
+            Node term = Term();
+            Node arithmatic_Operation = Arithmatic_Operation();
+            Node RP = match(TINY_Token_Class.RParanthesis);
+            
+            if (term.children.Count != 0 && arithmatic_Operation == null)
+            {
+                node.children.Add(term);
+                return node;
+            }
+            else if(arithmatic_Operation==null && RP != null)
+            {
+                
+                node.children.Add(match(TINY_Token_Class.RParanthesis));
+                return node;
+            }
+            else if(RP != null) {
+                node.children.Add(match(TINY_Token_Class.RParanthesis));
+                 }
+            tokenIndex -= (term.children.Count );
+            tokenIndex -= (arithmatic_Operation.children.Count);
+            if (ISmatch(TINY_Token_Class.LParanthesis, tokenIndex))
+            {
+                node.children.Add(match(TINY_Token_Class.LParanthesis));
+                node.children.Add(Equation());
+                
+                return node;
+            }
+            return null;
         }
-        public void Right(Node node)
-        {
-            return;
-        }
+        //public void Left(Node node)
+        //{
+        //    if (ISmatch(TINY_Token_Class.LParanthesis, tokenIndex) || (Term() != null && tokenIndex == TokenStream.Count - 1))
+        //    {
+        //        return;
+        //    }
+        //    else
+        //    {
+        //        node.children.Add(Term());
+        //        node.children.Add(Arithmatic_Operation());
+        //    }
+
+        //}
+        //public void Mid(Node node)
+        //{
+        //    return;
+        //}
+        //public void Right(Node node)
+        //{
+        //    return;
+        //}
 
         public Node DeclarationStatement()      //semicolon error
         {
